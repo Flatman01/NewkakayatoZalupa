@@ -1,15 +1,13 @@
 package web.Service;
 
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import web.Model.Car;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class CarServiceImpl implements CarService {
+public class CarServiceImpl {
     private List<Car> cars;
 
     {
@@ -28,13 +26,4 @@ public class CarServiceImpl implements CarService {
         }
         return cars.subList(0, Math.min(count, cars.size()));
     }
-
-    @Override
-    public Car getCar(int index) {
-        if (index >= 0 && index < cars.size()) {
-            return cars.get(index);
-        }
-        return null;
-    }
-
 }
