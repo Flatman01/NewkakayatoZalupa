@@ -1,27 +1,25 @@
 package web.Model;
 
-
 import jakarta.persistence.*;
-import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "username")
 public class User {
 
     @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment", strategy = "increment")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "firstName")
     private String firstName;
+
     @Column(name = "lastName")
     private String lastName;
+
     @Column(name = "age")
     private int age;
 
     public User() {
-
     }
 
     public User(long id, String firstName, String lastName, int age) {
@@ -31,7 +29,6 @@ public class User {
         this.age = age;
     }
 
-
     public long getId() {
         return id;
     }
@@ -40,7 +37,7 @@ public class User {
         this.id = id;
     }
 
-    public int getAge(int age) {
+    public int getAge() {
         return age;
     }
 
@@ -48,7 +45,7 @@ public class User {
         this.age = age;
     }
 
-    public String getFirstName(String firstName) {
+    public String getFirstName() {
         return firstName;
     }
 
@@ -63,6 +60,4 @@ public class User {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
-
 }

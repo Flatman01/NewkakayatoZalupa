@@ -1,4 +1,4 @@
-package hiber.config;
+package web.config;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.hibernate.Transaction;

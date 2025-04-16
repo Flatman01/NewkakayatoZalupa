@@ -9,30 +9,35 @@ import web.Service.UserService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private UserService service;
 
-    @GetMapping
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    @ResponseBody
     public List<User> getAllUsers() {
-        return userService.getAllUsers();
+
+        return service.getAll();
     }
 
-    @GetMapping("/{id}")
-    public User getUser(@PathVariable Long id) {
-        return userService.getUserById(id);
+    @RequestMapping(value = "/user/{id} ", method = RequestMethod.GET)
+    @ResponseBody
+    public User getUser(@PathVariable("id") long id) {
+        return service.getById(id);
     }
 
-    @PostMapping
+    @RequestMapping(value = "/user", method = RequestMethod.POST)
+    @ResponseBody
     public User saveUser(@RequestBody User user) {
-        return userService.saveUser(user);
+        return service.save(user);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable Long id) {
-        userService.deleteUser(id);
+    @RequestMapping(value = "/user/{id} ", method = RequestMethod.POST)
+    @ResponseBody
+    public void delete(@PathVariable long id) {
+        service.delete(id);
     }
 }
+
 
