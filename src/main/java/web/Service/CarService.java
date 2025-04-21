@@ -1,7 +1,6 @@
 package web.Service;
 
-import org.springframework.stereotype.Component;
-import web.Model.Car;
+import web.model.Car;
 
 import java.util.List;
 

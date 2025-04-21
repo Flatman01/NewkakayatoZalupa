@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Show</title>
+</head>
+<body>
+<p>ID: <span th:text="${user.id}">ID</span></p>
+<p>First Name: <span th:text="${user.firstName}">First Name</span></p>
+<p>Last Name: <span th:text="${user.lastName}">Last Name</span></p>
+<p>Age: <span th:text="${user.age}">Age</span></p>
+
+<br/>
+
+<a th:href="@{/user/{id}/edit(id=${user.id})}">Edit</a>
+
+<form th:action="@{/user/{id}(id=${user.id})}" method="post">
+  <input type="hidden" name="_method" value="DELETE"/>
+  <input type="submit" value="Delete"/>
+</form>
+
+<br/>
+<a th:href="@{/user}">Back to list</a>
+
+</body>
+</html>

@@ -1,7 +1,6 @@
 package web.config;
 
 import org.apache.commons.dbcp2.BasicDataSource;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -28,9 +27,13 @@ import java.util.Properties;
 @ComponentScan(value = "web")
 public class AppConfig {
 
-    @Autowired
-    private Environment env;
+    private final Environment env;
     private Properties hibernateProperties;
+
+    public AppConfig(Environment env) {
+        this.env = env;
+    }
+
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
@@ -76,7 +79,7 @@ public class AppConfig {
             properties.load(is);
             return properties;
         } catch (IOException e) {
-            throw new IllegalArgumentException("Не получается найти фаил hibernate.properties", e);
+            throw new IllegalArgumentException("Не получается найти файл hibernate.properties", e);
         }
 
     }
