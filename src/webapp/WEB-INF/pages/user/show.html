@@ -6,8 +6,6 @@
 </head>
 <body>
 
-<h1>User Details</h1>
-
 <div>
     <p><strong>First Name:</strong> <span th:text="${user.firstName}"></span></p>
     <p><strong>Last Name:</strong> <span th:text="${user.lastName}"></span></p>
@@ -15,6 +13,10 @@
 </div>
 
 <a th:href="@{/user/{id}/edit(id=${user.id})}">Edit User</a>
+
+<form th:method="DELETE" th:action="@{/user/{id}(id=$(user.getId()})">
+<input type="submit" value="Delete"/>
+</form>
 
 </body>
 </html>
