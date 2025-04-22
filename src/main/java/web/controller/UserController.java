@@ -21,7 +21,7 @@ public class UserController {
     @GetMapping()
     public String index(Model model) {
         model.addAttribute("users", userService.index());
-        return "user/index";
+        return "user/user";
     }
 
     @GetMapping("/{id}")
@@ -50,8 +50,13 @@ public class UserController {
 
     @GetMapping("/{id}/edit")
     private String edit(@PathVariable("id") int id, Model model) {
-        User user = userService.show(id);
-        model.addAttribute("user", user);
+        model.addAttribute("user", userService.show(id));
         return "user/edit";
+    }
+
+    @PatchMapping("/{id}")
+    public String update(@ModelAttribute("user") User user, @PathVariable("id") int id) {
+        userService.update(id, user);
+        return "redirect:/user";
     }
 }

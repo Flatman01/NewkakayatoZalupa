@@ -37,4 +37,13 @@ public class UserServiceImpl implements UserService {
     public void delete(int id) {
         users.removeIf(user -> user.getId() == id);
     }
+
+    public void update(int id, User updatedUser) {
+        User userToBoUpdated = show(id);
+        userToBoUpdated.setId(updatedUser.getId());
+        userToBoUpdated.setFirstName(updatedUser.getFirstName());
+        userToBoUpdated.setLastName(updatedUser.getLastName());
+        userToBoUpdated.setAge(updatedUser.getAge());
+
+    }
 }
