@@ -3,12 +3,13 @@ package web.Service;
 import org.springframework.stereotype.Component;
 import web.model.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class UserServiceImpl implements UserService {
     private static int PEOPLE_COUNT;
-    private List<User> users;
+    private List<User> users = new ArrayList<>();
 
 
     public List<User> index() {
