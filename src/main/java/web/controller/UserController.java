@@ -18,20 +18,21 @@ public class UserController {
         this.userService = userService;
     }
 
-
-    @GetMapping()
+    @GetMapping
     public String index(Model model) {
         model.addAttribute("users", userService.index());
         return "user/users";
     }
 
-
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model) {
-        model.addAttribute("user", userService.show(id));
+        User user = userService.show(id);
+        if (user == null) {
+            return "redirect:/users";
+        }
+        model.addAttribute("user", user);
         return "user/show";
     }
-
 
     @GetMapping("/new")
     public String newUser(Model model) {
@@ -39,8 +40,7 @@ public class UserController {
         return "user/new";
     }
 
-
-    @PostMapping()
+    @PostMapping
     public String create(@ModelAttribute("user") User user) {
         userService.save(user);
         return "redirect:/users";
@@ -52,17 +52,19 @@ public class UserController {
         return "redirect:/users";
     }
 
-
     @GetMapping("/{id}/edit")
-    private String edit(@PathVariable("id") int id, Model model) {
-        model.addAttribute("user", userService.show(id));
+    public String edit(@PathVariable("id") int id, Model model) {
+        User user = userService.show(id);
+        if (user == null) {
+            return "redirect:/users";
+        }
+        model.addAttribute("user", user);
         return "user/edit";
     }
 
-
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("user") User user, @PathVariable("id") int id) {
-        userService.update(id, user);
+    public String update(@ModelAttribute("user") User updatedUser, @PathVariable("id") int id) {
+        userService.update(id, updatedUser);
         return "redirect:/users";
     }
 }
